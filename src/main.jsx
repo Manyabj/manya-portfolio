@@ -1,0 +1,16 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './styles/global.css'
+import './styles/animations.css'
+import './styles/navbar.css'
+import './styles/home.css'
+import './styles/about.css'
+import './styles/skills.css'
+import './styles/projects.css'
+import './styles/experience.css'
+import './styles/education.css'
+import './styles/certifications.css'
+import './styles/contact.css'
+
+createRoot(document.getElementById('root')).render(<App />)

@@ -1,0 +1,20 @@
+/* Animated background */
+.bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--black); }
+.bg canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bg-glow { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(90px); opacity: .45; }
+.bg-glow-a { background: radial-gradient(circle, var(--maroon), transparent 65%); top: -20vmax; left: -15vmax; animation: drift-a 26s ease-in-out infinite alternate; }
+.bg-glow-b { background: radial-gradient(circle, #4a0d1c, transparent 65%); bottom: -25vmax; right: -15vmax; animation: drift-b 32s ease-in-out infinite alternate; }
+@keyframes drift-a { to { transform: translate(12vmax, 8vmax); } }
+@keyframes drift-b { to { transform: translate(-10vmax, -8vmax); } }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .bg-glow, .caret { animation: none !important; }
+  .btn:hover { transform: none; }
+}

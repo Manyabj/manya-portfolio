@@ -1,0 +1,25 @@
+.projects-grid { display: grid; gap: 1.5rem; }
+.project { display: grid; grid-template-columns: 220px 1fr; border: 1px solid var(--surface-border); border-radius: var(--radius); overflow: hidden; background: var(--surface); backdrop-filter: blur(10px); transition: border-color .3s, opacity .7s ease, transform .7s ease; }
+.project:hover { border-color: var(--rose); }
+.project:nth-child(even) { grid-template-columns: 1fr 220px; }
+.project:nth-child(even) .project-visual { order: 2; }
+.project-visual { display: grid; place-items: center; min-height: 160px; }
+.project-visual span { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; text-align: center; padding: 1rem; }
+/* Each project gets its own visual identity from the same palette */
+.project-pneumonia .project-visual { background: radial-gradient(circle at 30% 30%, #9c1f3a, #1a0509 70%); }
+.project-sales .project-visual { background: repeating-linear-gradient(90deg, rgba(224,100,124,.25) 0 14px, transparent 14px 28px), linear-gradient(180deg, #4a0d1c, #120306); }
+.project-objection .project-visual { background: conic-gradient(from 200deg at 50% 50%, #6b1226, #1a0509, #9c1f3a, #1a0509, #6b1226); }
+.project-body { padding: 1.75rem; }
+.project-body h3 { font-size: 1.5rem; margin-bottom: .6rem; }
+.project-meta { color: var(--rose); font-size: .9rem; margin-bottom: .5rem; }
+.project-features { margin: 1rem 0; display: grid; gap: .5rem; color: var(--muted); font-size: .95rem; }
+.project-features li, .timeline-points li, .edu-list li { padding-left: 1.1rem; position: relative; }
+.project-features li::before, .timeline-points li::before, .edu-list li::before { content: ''; position: absolute; left: 0; top: .65em; width: 6px; height: 6px; border-radius: 50%; background: var(--burgundy); }
+.project-links { display: flex; gap: 1rem; margin-top: 1rem; }
+.project-links a { display: inline-flex; gap: .4rem; align-items: center; color: var(--rose); font-weight: 600; }
+.project-links a:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .project, .project:nth-child(even) { grid-template-columns: 1fr; }
+  .project:nth-child(even) .project-visual { order: 0; }
+  .project-visual { min-height: 100px; }
+}

@@ -1,0 +1,5 @@
+.about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: start; }
+.about-text p { color: var(--muted); max-width: 60ch; font-size: 1.05rem; }
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .about-cards { grid-template-columns: 1fr; } }

@@ -1,0 +1,2 @@
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+.skill-card h3 { font-size: 1.1rem; }

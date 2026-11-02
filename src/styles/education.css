@@ -1,0 +1,12 @@
+.rank-banner { display: flex; align-items: center; gap: 1.25rem; padding: 1.75rem; margin-bottom: 1.25rem; border-radius: var(--radius); background: linear-gradient(120deg, rgba(156,31,58,.55), rgba(107,18,38,.25)); border: 1px solid rgba(224,100,124,.5); box-shadow: 0 0 60px rgba(156,31,58,.25); }
+.rank-banner svg { flex: none; color: var(--rose); }
+.rank-banner p { margin: 0; font-size: clamp(1.1rem, 2.6vw, 1.5rem); font-family: var(--font-display); }
+.rank-banner strong { font-weight: 800; }
+.edu-card { display: flex; gap: 1.25rem; }
+.edu-card > svg { flex: none; color: var(--rose); margin-top: .2rem; }
+.edu-card p { color: var(--muted); }
+.edu-list { display: grid; gap: .5rem; margin-top: 1rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.25rem 0 0; }
+.stat { padding: 1.25rem; border-left: 2px solid var(--burgundy); display: flex; flex-direction: column-reverse; }
+.stat dt { color: var(--muted); font-size: .9rem; }
+.stat dd { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; }
