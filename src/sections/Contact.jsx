@@ -3,15 +3,53 @@ import { Mail, Phone, Github, Linkedin, Send } from 'lucide-react'
 import Reveal from '../components/Reveal.jsx'
 import { profile } from '../data/portfolioData.js'
 
+const emptyForm = { name: '', email: '', subject: '', message: '' }
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [form, setForm] = useState(emptyForm)
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState('')
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
 
-  // No backend: this opens the visitor's email app with the message pre-filled.
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    const body = `${form.message}\n\nFrom: ${form.name} (${form.email})`
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`
+    setStatus('sending')
+    setError('')
+
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          _replyto: form.email,
+          _subject: form.subject || `Message from ${form.name} via portfolio`,
+          message: form.message,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      const message = data.message || data.error?.message || ''
+      if (/activat/i.test(message)) {
+        setForm(emptyForm)
+        setStatus('activate')
+        return
+      }
+      const ok = data.success === true || data.success === 'true' || data.ok === true
+      if (!res.ok || !ok) {
+        throw new Error(message || 'Could not send the message.')
+      }
+      setForm(emptyForm)
+      setStatus('sent')
+    } catch (err) {
+      setStatus('error')
+      setError(err.message || 'Could not send the message.')
+    }
   }
 
   return (
@@ -28,14 +66,33 @@ export default function Contact() {
           </ul>
         </Reveal>
         <Reveal delay={100}>
-          <form className="card contact-form" onSubmit={onSubmit}>
-            <label>Name<input required value={form.name} onChange={set('name')} autoComplete="name" /></label>
-            <label>Email<input required type="email" value={form.email} onChange={set('email')} autoComplete="email" /></label>
-            <label>Subject<input required value={form.subject} onChange={set('subject')} /></label>
-            <label>Message<textarea required rows="5" value={form.message} onChange={set('message')} /></label>
-            <button className="btn btn-primary" type="submit"><Send size={18} /> Open in email app</button>
-            <p className="form-note">This site has no server, so sending opens your email app with the message ready to send to {profile.email}.</p>
-          </form>
+          {status === 'sent' || status === 'activate' ? (
+            <div className="card contact-form" role="status">
+              <p className="form-success">
+                {status === 'activate'
+                  ? `Check ${profile.email} for a FormSubmit email and click Activate Form once. After that, Send will deliver messages to your inbox.`
+                  : 'Message sent. I’ll get back to you at the email you entered.'}
+              </p>
+              <button className="btn btn-ghost" type="button" onClick={() => setStatus('idle')}>
+                Send another
+              </button>
+            </div>
+          ) : (
+            <form className="card contact-form" onSubmit={onSubmit}>
+              <label>Name<input required name="name" value={form.name} onChange={set('name')} autoComplete="name" /></label>
+              <label>Email<input required name="email" type="email" value={form.email} onChange={set('email')} autoComplete="email" /></label>
+              <label>Subject<input required name="subject" value={form.subject} onChange={set('subject')} /></label>
+              <label>Message<textarea required name="message" rows="5" value={form.message} onChange={set('message')} /></label>
+              <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
+                <Send size={18} /> {status === 'sending' ? 'Sending…' : 'Send'}
+              </button>
+              {status === 'error' && (
+                <p className="form-error" role="alert">
+                  {error} You can also email me directly at {profile.email}.
+                </p>
+              )}
+            </form>
+          )}
         </Reveal>
       </div>
     </section>

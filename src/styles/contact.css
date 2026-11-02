@@ -8,5 +8,8 @@
 .contact-form input, .contact-form textarea { font: inherit; color: var(--text); background: rgba(0,0,0,.35); border: 1px solid var(--surface-border); border-radius: 10px; padding: .75rem .9rem; resize: vertical; }
 .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--rose); outline-offset: 1px; border-color: transparent; }
 .contact-form .btn { justify-self: start; }
+.contact-form .btn:disabled { opacity: .65; cursor: wait; transform: none; }
 .form-note { font-size: .85rem; color: var(--muted); margin: 0; }
+.form-success { color: var(--text); font-size: 1.05rem; margin: 0; }
+.form-error { font-size: .85rem; color: #f3b4c0; margin: 0; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
