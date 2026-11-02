@@ -21,5 +21,6 @@ npm run preview
 ## Deploy
 Vercel: push to GitHub, import the repo at vercel.com (framework: Vite), Deploy.
 
-GitHub Pages: `npm install -D gh-pages`, add `"deploy": "vite build && gh-pages -d dist"` to scripts,
-run `npm run deploy`, then Settings → Pages → branch `gh-pages`. (`base: './'` is already set.)
+GitHub Pages: the workflow in `.github/workflows/deploy.yml` builds and deploys `dist/` whenever
+you push to `main`. In repository Settings → Pages, set the build and deployment source to
+**GitHub Actions**. The Vite base path is configured for the `manya-portfolio` repository.
