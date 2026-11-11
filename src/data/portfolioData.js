@@ -132,7 +132,6 @@ export const education = {
 export const stats = [
   { value: 4, prefix: 'Rank ', suffix: '', decimals: 0, label: 'CSE-AI, VTU' },
   { value: 9.41, suffix: ' / 10', decimals: 2, label: 'CGPA' },
-  { value: 98, prefix: 'Up to ', suffix: '%', decimals: 0, label: 'CNN image classification accuracy' },
   { value: 80, suffix: ' / 100', decimals: 0, label: 'NPTEL Java, Silver Elite' },
 ]
 
@@ -141,4 +140,7 @@ export const certifications = [
   { name: 'Machine Learning for All', issuer: 'Coursera', year: '2025', note: 'Supervised, unsupervised and deep learning techniques with hands-on implementation exercises.', link: 'https://www.coursera.org/account/accomplishments/verify/5DZRP7NJK0EL' },
   { name: 'Data Visualisation', issuer: 'Forage', year: '2025', note: 'Business scenario analysis, dashboard visualisation and effective communication of analytical insights.', link: 'https://drive.google.com/file/d/1CmOI6KunLAOW-ZH2ua3_HlRXBkAF8HAi/view?usp=sharing' },
   { name: 'Excel Basics for Data Analysis', issuer: 'Coursera', year: '2025', note: 'Foundational Excel skills for data analysis, reporting and visualisation tasks.', link: 'https://www.coursera.org/account/accomplishments/verify/PVALXHT53XL2' },
+  {
+  name: 'HTML Essentials',issuer: 'Cisco Networking Academy',year: '2026',note: 'Successfully completed HTML Essentials, covering the fundamentals of HTML and webpage structure.',link: 'https://www.netacad.com/recognitions/verify/b0828771-f83b-4d02-b07c-35b1ac6b3d95'
+  },
 ]
